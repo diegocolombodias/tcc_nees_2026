@@ -334,6 +334,42 @@ desenvolvimento e do teste do
 aplicativo. As demais tratam da organização da resposta humana, do acompanhamento
 da equidade e dos dados e da adaptação da pesquisa à rotina escolar.
 
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    acao/.style={draw,rounded corners=3pt,text width=5.1cm,
+      minimum height=18mm,align=center,inner sep=4pt,font=\small},
+    ciclo/.style={-{Latex[length=2.2mm]},semithick,gray!75},
+    node distance=10mm and 13mm
+  ]
+    \node[acao,fill=blue!9] (a1)
+      {\textbf{Ação 1 --- Implementação prática}\\Aplicativo, piloto em ondas e validação local};
+    \node[acao,fill=green!10,right=of a1] (a2)
+      {\textbf{Ação 2 --- Resposta humana}\\Formação, acolhimento e gestão da carga de trabalho};
+    \node[acao,fill=orange!12,below=of a2] (a3)
+      {\textbf{Ação 3 --- Equidade e dados}\\Privacidade, controle de acesso e transparência};
+    \node[acao,fill=violet!10,left=of a3] (a4)
+      {\textbf{Ação 4 --- Tradução da pesquisa}\\Orientações, indicadores e aprendizagem contínua};
+
+    \draw[ciclo] (a1) -- (a2);
+    \draw[ciclo] (a2) -- (a3);
+    \draw[ciclo] (a3) -- (a4);
+    \draw[ciclo] (a4) -- (a1);
+  \end{tikzpicture}
+  \caption{Articulação das quatro ações da estratégia de implementação}
+  \label{fig:quatro-acoes}
+  \par\smallskip
+  \small Fonte: elaboração dos autores.
+\end{figure}
+
+A Figura \ref{fig:quatro-acoes} sintetiza a relação entre as ações. O piloto
+produz evidências sobre o funcionamento do aplicativo e do fluxo de cuidado; a
+resposta humana define como os alertas serão interpretados; a governança de
+dados estabelece os limites de uso; e a tradução da pesquisa converte os
+resultados em ajustes de protocolo, formação e tecnologia. Por isso, as ações
+formam um processo de revisão contínua, e não uma sequência encerrada após a
+implantação.
+
 \section{Ação 1 -- Implementação prática}
 
 O aplicativo móvel deve funcionar em dispositivo compartilhado da escola. Após

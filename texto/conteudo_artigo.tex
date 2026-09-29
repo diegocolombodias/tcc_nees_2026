@@ -1,0 +1,293 @@
+\chapter{Inteligência artificial de baixo consumo para o bem-estar estudantil}
+
+Este capítulo retoma, em português, a nota técnica
+\emph{Low-Power Artificial Intelligence for Monitoring Student Well-Being and
+Burnout Risk in Low-Connectivity Contexts in Brazil}. O texto examina de que
+maneira a proposta poderia funcionar nas redes públicas brasileiras, levando em
+conta as condições de infraestrutura, as responsabilidades dos envolvidos e os
+limites da intervenção.
+
+\section{Cenário atual}
+
+As escolas públicas brasileiras enfrentam níveis crescentes de ansiedade,
+estresse crônico e exaustão acadêmica entre os estudantes. Esses fenômenos
+prejudicam o engajamento, o desempenho e a permanência escolar. No Brasil, o problema é agravado pelo estigma associado à saúde mental. A
+análise suplementar do PISA usada na nota técnica indica que aproximadamente
+70\% dos jovens evitam admitir que estão estressados. O dado converge com a
+enquete do UNICEF, na qual medo, insegurança e falta de informação aparecem
+entre os motivos para não procurar ajuda \cite{unicef2022ajuda}.
+
+Também há pouca capacidade institucional para perceber e responder a essas
+situações. A nota técnica registra que somente 15,7\% das escolas públicas
+brasileiras teriam psicólogo presente na unidade. Na prática, a identificação
+tende a depender do julgamento informal de professores que já acumulam muitas
+responsabilidades. A Lei nº 13.935/2019 prevê serviços de psicologia e serviço
+social nas redes públicas, mas a existência da norma não significa que esses
+profissionais estejam disponíveis em todas as escolas e territórios
+\cite{brasil13935}.
+
+A conectividade precária não causa o sofrimento psicológico, mas amplia a
+dificuldade de resposta. No cenário analisado pela nota técnica, 63,7\% das
+escolas da região Norte estavam conectadas à internet. Plataformas educacionais
+concebidas para uso contínuo da nuvem tornam-se pouco viáveis onde a conexão é
+intermitente. Os dados da TIC Educação 2024 reforçam que o acesso nominal não
+elimina limitações de velocidade, dispositivos e cobertura dentro das escolas
+\cite{cgi2025}.
+
+Os dados mais recentes da TIC Educação ajudam a qualificar esse diagnóstico.
+Embora o acesso nominal à internet tenha avançado, persistem problemas de
+velocidade, cobertura interna, manutenção e disponibilidade de dispositivos
+\cite{cgi2025}. Portanto, a política não deve equiparar ``escola conectada'' a
+``escola capaz de manter um serviço em nuvem''. A qualidade e a continuidade do
+acesso são relevantes para a escolha tecnológica.
+
+\section{Solução proposta}
+
+Enfrentar essa lacuna exige uma ferramenta projetada para as condições que as
+escolas efetivamente possuem, e não para a infraestrutura presumida pelos
+fornecedores. Propõe-se um aplicativo móvel \emph{offline-first} que aplique um
+instrumento psicossocial validado: a DASS-21, ou Escala de Depressão, Ansiedade
+e Estresse. Para adolescentes brasileiros, a referência adequada é a EDAE-A,
+versão adaptada e validada por Patias e colaboradores \cite{patias2016}.
+
+Em vez de enviar as respostas a um servidor em nuvem, o aplicativo realiza a
+pontuação localmente e utiliza um modelo leve de classificação do tipo TinyML.
+Essa forma de IA de baixo consumo segue princípios de baixa conectividade e
+hardware mínimo presentes na abordagem AIED Unplugged \cite{uema2026}. O
+estudante responde ao questionário em um dispositivo compartilhado da escola; o
+sistema organiza as respostas em faixas auxiliares de atenção; e a equipe recebe
+um alerta protegido.
+
+Para a gestão, a informação deve ser agregada e anonimizada, como no exemplo:
+``cinco estudantes desta turma apresentaram indicação de atenção moderada ou
+elevada''. Nomes e respostas individuais ficam fora dos painéis gerenciais. O
+acesso individualizado deve ser limitado a profissional treinado e autorizado,
+quando necessário para realizar a escuta e dar continuidade ao cuidado.
+
+O processamento local procura tornar a triagem mais regular sem transferir a
+decisão ao aplicativo. O alerta apenas organiza a demanda. A interpretação das
+respostas, o acolhimento e a definição do encaminhamento continuam sob
+responsabilidade dos profissionais.
+
+A agregação e a confidencialidade são requisitos centrais. Mesmo um sistema
+bem-intencionado pode produzir efeito contrário ao pretendido caso o estudante
+acredite que será rotulado, punido ou exposto. Nessa situação, ele pode ocultar
+o sofrimento ou fornecer respostas socialmente desejáveis. A proteção não é
+apenas uma exigência jurídica; ela determina a confiança e a qualidade dos dados
+obtidos.
+
+\begin{figure}[htbp]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tikzpicture}[
+    node distance=7mm and 10mm,
+    every node/.style={font=\scriptsize,align=center},
+    caixa/.style={draw,rounded corners=3pt,minimum height=10mm,
+      text width=48mm,inner sep=3pt},
+    fluxo/.style={-{Latex[length=2mm]},gray!75,semithick}
+  ]
+    \node[font=\small\bfseries] (titulo)
+      {IA de baixo consumo --- Brasil (TinyML offline)};
+    \node[caixa,fill=violet!10,below left=7mm and 2mm of titulo] (educacao)
+      {Ministério da Educação\\Diretrizes, LGPD e recursos};
+    \node[caixa,fill=violet!10,below right=7mm and 2mm of titulo] (saude)
+      {Ministério da Saúde\\Diretrizes de saúde mental};
+    \node[caixa,fill=green!10,below=13mm of titulo] (gestores)
+      {Gestores e diretores escolares\\Implantam alertas e lideram a cultura de cuidado};
+    \node[caixa,fill=orange!12,below left=9mm and 2mm of gestores] (professores)
+      {Professores\\Interpretam alertas e intervêm};
+    \node[caixa,fill=green!12,below right=9mm and 2mm of gestores] (estudantes)
+      {Estudantes\\Dados da DASS-21 e classificação de risco};
+    \node[caixa,fill=red!8,below=14mm of gestores] (aplicativo)
+      {Aplicativo TinyML offline\\Processamento local em dispositivos de baixo custo};
+    \node[caixa,fill=gray!10,below left=9mm and 2mm of aplicativo] (familias)
+      {Famílias\\Consentimento e adoção legítima};
+    \node[caixa,fill=gray!10,below right=9mm and 2mm of aplicativo] (tecnologia)
+      {Setor tecnológico e TIC\\Desenvolvimento da ferramenta offline};
+
+    \draw[fluxo] (educacao) -- (gestores);
+    \draw[fluxo] (saude) -- (gestores);
+    \draw[fluxo] (gestores) -- (professores);
+    \draw[fluxo] (gestores) -- (estudantes);
+    \draw[fluxo] (professores) -- (aplicativo);
+    \draw[fluxo] (estudantes) -- (aplicativo);
+    \draw[fluxo] (aplicativo) -- (familias);
+    \draw[fluxo] (aplicativo) -- (tecnologia);
+  \end{tikzpicture}
+  }
+  \caption{Atores e relações operacionais da proposta de IA de baixo consumo}
+  \label{fig:atores-tinyml}
+  \par\smallskip
+  \small Fonte: tradução e adaptação de \emph{catedra\_texto.pdf}.
+\end{figure}
+
+A Figura \ref{fig:atores-tinyml} mostra a articulação prevista. Educação e saúde
+definem diretrizes, recursos e regras; gestores escolares conduzem a implantação
+e promovem uma cultura de cuidado; professores interpretam alertas e ajudam a
+acionar o fluxo; estudantes fornecem os dados da DASS-21; famílias participam da
+legitimação e do cuidado; e parceiros tecnológicos apoiam o desenvolvimento da
+solução offline.
+
+\section{Cenário político}
+
+O Brasil já deu um passo legislativo ao instituir a Política Nacional de Atenção
+Psicossocial nas Comunidades Escolares por meio da Lei nº 14.819/2024. A norma
+reconhece a saúde mental como componente da qualidade educacional e determina a
+articulação entre educação, saúde e assistência social \cite{brasil14819}. A
+lacuna encontra-se agora na capacidade de implementar o que a política prevê.
+
+A execução, porém, depende de coordenação entre setores e de capacidade local
+para acolher os estudantes. A nota técnica aponta um déficit acumulado de
+R\$ 117,71 bilhões no chamado Orçamento do Conhecimento desde 2014. Esse dado é
+usado no documento para situar as restrições de financiamento que afetam as
+redes de ensino. A lei atribui a governança aos Grupos de Trabalho
+Intersetoriais do Programa Saúde na Escola e exige a participação da saúde e da
+comunidade escolar \cite{brasil14819}. O programa proposto deve partir dessa
+estrutura, em vez de criar um fluxo paralelo.
+
+A nota técnica também registra redução de 2,3\% nas matrículas da educação
+básica em 2025. Como esse movimento pode decorrer de mudanças demográficas e
+administrativas, ele não deve ser interpretado automaticamente como evasão. Os
+resultados do programa precisam ser comunicados com a mesma cautela,
+distinguindo variação ao longo do tempo, associação e efeito causal.
+
+\section{Atores envolvidos}
+
+Os ministérios e as secretarias de Educação e Saúde ocupam posição central:
+definem diretrizes, distribuem recursos e estabelecem regras para que a
+ferramenta cumpra a LGPD e as políticas nacionais de saúde mental escolar. Seu
+interesse é elevado, pois o tema possui relevância social e potencial retorno
+público. A liderança deve ser compartilhada com a assistência social e com as
+instâncias territoriais do Programa Saúde na Escola.
+
+Diretores e professores participam da implantação cotidiana e da interpretação
+dos alertas. A adesão desses profissionais dependerá de o sistema ser percebido
+como apoio, e não como nova forma de cobrança. Isso exige formação para respostas
+emocionais, informacionais e instrumentais, além de reorganização das tarefas.
+Se apenas acrescentar trabalho, a tecnologia tende a ser abandonada ou utilizada
+de maneira superficial.
+
+Os estudantes são o grupo mais afetado. Seu engajamento depende, sobretudo, da
+confiança de que os dados não serão utilizados para rotular, discriminar ou
+punir. Pais e responsáveis também influenciam a legitimidade do programa. A
+comunicação de privacidade deve explicar, em linguagem simples, o que é coletado,
+quem pode acessar e quais providências podem ocorrer.
+
+Parceiros tecnológicos, universidades e organizações da sociedade civil podem
+fornecer capacidade para construir e adaptar o sistema às condições locais. A
+nota técnica menciona organizações especializadas em ferramentas
+\emph{offline-first} para o Sul Global. Essas parcerias devem estar subordinadas
+à governança pública, com padrões abertos, portabilidade, transparência e
+proibição de exploração comercial dos dados estudantis.
+
+\section{Desafios e lacunas}
+
+A proposta enfrenta problemas de naturezas diferentes. Boa parte das soluções
+de IA pressupõe uma infraestrutura que muitas escolas não possuem. Ao mesmo
+tempo, o subfinanciamento e a falta de profissionais limitam a resposta ao que a
+triagem revela. Há ainda o estigma, que pode levar estudantes a esconder o que
+sentem mesmo quando existe um canal de escuta.
+
+Nenhuma dessas lacunas é resolvida apenas com um modelo mais preciso. O desafio
+tecnológico pede arquitetura local e manutenção simples; o institucional exige
+governança, formação e articulação da rede; o sociocultural requer comunicação,
+confidencialidade e participação estudantil. É por esse motivo que as
+recomendações técnicas são apresentadas em conjunto com medidas institucionais e
+de comunicação.
+
+\section{Comparação das alternativas de política}
+
+A nota técnica compara o aplicativo offline com duas alternativas: contratação
+universal de profissionais e plataforma dependente de alta conectividade. A
+comparação não pretende afirmar que uma alternativa elimina as demais. A
+contratação de psicólogos e assistentes sociais continua necessária; o
+aplicativo atua como apoio à organização da demanda.
+
+\begin{longtable}{p{3.0cm}p{3.3cm}p{3.3cm}p{3.3cm}}
+\caption{Comparação das alternativas apresentadas no artigo}\label{tab:alternativas-artigo}\\
+\toprule
+\textbf{Alternativa} & \textbf{Adequação técnica} & \textbf{Apoio político} & \textbf{Viabilidade organizacional} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Alternativa} & \textbf{Adequação técnica} & \textbf{Apoio político} & \textbf{Viabilidade organizacional} \\
+\midrule
+\endhead
+Aplicativo de classificação \emph{offline-first}
+& Alta: a solução de baixo consumo responde à limitação de conectividade.
+& Média-alta: há interesse público no bem-estar, mas preocupações com privacidade podem gerar oposição.
+& Média: requer parceria especializada em TinyML e gestão da carga de trabalho. \\
+\addlinespace
+Contratação universal de profissionais
+& Alta: oferece apoio humano direto e possui fundamento científico.
+& Média: custo recorrente e sustentabilidade orçamentária podem gerar resistência.
+& Baixa em áreas remotas: há dificuldade de contratar e reter profissionais qualificados. \\
+\addlinespace
+Plataforma de alta conectividade
+& Alta em ambientes com infraestrutura e dados adequados.
+& Média-baixa: requer investimento elevado e pode criar dependência tecnológica.
+& Baixa em escolas sem internet estável, especialmente em territórios historicamente excluídos. \\
+\bottomrule
+\end{longtable}
+
+\section{Recomendações}
+
+O artigo recomenda uma política apoiada em IA de baixo consumo,
+\emph{offline-first} e TinyML para o monitoramento do bem-estar em contextos de
+baixa conectividade. O processamento local em dispositivos de baixo custo amplia
+o alcance potencial da política. Sua implementação é organizada em quatro ações
+coordenadas.
+
+\subsection{Implementação prática}
+
+A implementação começaria pelo desenvolvimento do aplicativo móvel e por um
+piloto de alcance limitado. O sistema coleta dados de bem-estar por meio da DASS-21/EDAE-A, um
+questionário de 21 itens que avalia sintomas recentes de depressão, ansiedade e
+estresse. Seu uso é de rastreio e monitoramento, sem função diagnóstica. Modelos
+leves processam localmente os dados e geram faixas auxiliares de atenção em um
+sistema de alertas agregados e anonimizados. A ação da escola continua sujeita
+ao julgamento profissional.
+
+O artigo sugere iniciar com aproximadamente cem escolas das regiões Norte e
+Nordeste, em articulação com iniciativas de AIED Unplugged e TinyML. A meta
+inicial proposta é redução de 15\% nos escores da escala entre a linha de base e
+o momento posterior à intervenção. Essa porcentagem é uma hipótese mensurável,
+não um resultado garantido. Os dados do piloto serviriam para validar o
+desempenho, corrigir protocolos, reduzir riscos e fundamentar eventual expansão
+nacional.
+
+\subsection{Institucionalização das rotinas de resposta}
+
+A resposta humana precisa fazer parte da rotina escolar antes que a tecnologia
+seja ampliada. Módulos de formação continuada devem preparar professores e equipes
+para compreender alertas e oferecer apoio emocional, informacional e
+instrumental. Também é necessário impedir que a ferramenta se torne mais um
+item na rotina já sobrecarregada: reorganizar tarefas, retirar obrigações
+administrativas sem relação com o cuidado e criar incentivos institucionais
+influencia a percepção do sistema como apoio ou vigilância.
+
+\subsection{Monitoramento orientado à equidade e à transparência}
+
+A confiança no programa também depende de regras de dados que possam ser
+compreendidas e fiscalizadas. Isso inclui armazenamento local cifrado, acesso individual
+restrito a profissionais treinados, relatórios agregados e anonimizados para
+gestores e proibição clara do uso punitivo ou discriminatório. Essas medidas não
+são detalhes posteriores da implantação: constituem uma condição para a
+participação dos estudantes e das famílias.
+
+\subsection{Tradução da pesquisa}
+
+Os resultados da pesquisa ainda precisam ser adaptados à rotina das escolas.
+Adaptar a DASS-21 ao uso cotidiano da escola, produzir orientações claras para
+profissionais não especialistas e acompanhar indicadores quantitativos e
+qualitativos permite que a ferramenta seja aprimorada continuamente. Entre os
+indicadores quantitativos estão os escores da escala e a permanência escolar;
+entre os qualitativos, a percepção da comunidade sobre confiança, acolhimento e
+utilidade.
+
+A IA de baixo consumo não resolve a falta de apoio psicossocial nas escolas.
+Ela pode ajudar a organizar a procura por atendimento e a identificar situações
+que exigem atenção, sobretudo onde a conexão é instável. O resultado, porém,
+depende do que acontece depois do alerta: se não houver acolhimento e
+encaminhamento, o sistema apenas registrará uma necessidade que a rede continua
+sem condições de atender.

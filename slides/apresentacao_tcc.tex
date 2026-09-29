@@ -1,0 +1,411 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric}
+\usepackage{booktabs}
+\usepackage{array}
+
+\definecolor{NeesOrange}{HTML}{F07A00}
+\definecolor{NeesRed}{HTML}{F12622}
+\definecolor{NeesWine}{HTML}{6E0E4C}
+\definecolor{NeesDark}{HTML}{122735}
+\definecolor{NeesGray}{HTML}{5E6670}
+\definecolor{NeesLight}{HTML}{F5F3F6}
+\definecolor{NeesLine}{HTML}{DDD9E0}
+\definecolor{NeesTeal}{HTML}{138B91}
+\definecolor{NeesGreen}{HTML}{4E9560}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{normal text}{fg=NeesDark,bg=white}
+\setbeamercolor{frametitle}{fg=NeesDark,bg=white}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamerfont{normal text}{size=\normalsize}
+\setbeamersize{text margin left=8mm,text margin right=8mm}
+
+\newcommand{\assetpath}{assets}
+\newcommand{\neeslogocolor}{%
+  \includegraphics[width=19mm,trim=120 70 1900 1085,clip]{\assetpath/rodape_nees.png}}
+\newcommand{\sources}[1]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=south west,text=NeesGray,font=\fontsize{5.7}{6.4}\selectfont]
+      at ([xshift=8mm,yshift=1.7mm]current page.south west) {#1};
+  \end{tikzpicture}%
+}
+
+\setbeamertemplate{background canvas}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[white] (current page.south west) rectangle (current page.north east);
+    \shade[left color=NeesOrange,middle color=NeesRed,right color=NeesWine]
+      (current page.north west) rectangle ([yshift=-4mm]current page.north east);
+    \shade[left color=NeesOrange,middle color=NeesRed,right color=NeesWine]
+      (current page.south west) rectangle ([yshift=0.9mm]current page.south east);
+  \end{tikzpicture}%
+}
+
+\setbeamertemplate{frametitle}{%
+  \vspace{4.4mm}
+  \insertframetitle\par
+  \vspace{-1mm}
+  {\color{NeesLine}\rule{\textwidth}{0.35pt}}
+}
+
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.87\paperwidth,ht=6.5mm,dp=1mm,leftskip=7mm]{normal text}%
+      \raisebox{-1.7mm}{\neeslogocolor}\hspace{2.5mm}%
+      {\fontsize{5.7}{6.7}\selectfont\color{NeesGray} Especialização em Gestão de Políticas Públicas Educacionais e Transformação Digital}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.13\paperwidth,ht=6.5mm,dp=1mm,center]{normal text}%
+      {\fontsize{7}{8}\selectfont\color{NeesWine}\insertframenumber/\inserttotalframenumber}
+    \end{beamercolorbox}%
+  }%
+}
+
+\newcommand{\metric}[4]{%
+  \begin{tikzpicture}
+    \node[draw=NeesLine,fill=NeesLight,rounded corners=2mm,
+      minimum width=#1,minimum height=31mm,inner sep=3mm,align=center] (box) {\vphantom{Á}};
+    \node[anchor=north,text=#3,font=\bfseries\fontsize{19}{20}\selectfont]
+      at ([yshift=-3.5mm]box.north) {#2};
+    \node[anchor=north,text=NeesDark,font=\fontsize{9}{11}\selectfont,
+      text width=#1-7mm,align=center] at ([yshift=-13mm]box.north) {#4};
+  \end{tikzpicture}%
+}
+
+\newcommand{\card}[4]{%
+  \begin{tikzpicture}
+    \node[draw=NeesLine,fill=NeesLight,rounded corners=2mm,
+      minimum width=#1,minimum height=#2,inner sep=3mm,align=left] (b) {\vphantom{Á}};
+    \fill[#3,rounded corners=2mm] (b.north west) rectangle ([xshift=1.8mm]b.south west);
+    \node[anchor=north west,text=#3,font=\bfseries\fontsize{9.5}{11}\selectfont]
+      at ([xshift=3.2mm,yshift=-3mm]b.north west) {#4};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+% 1 — capa
+{\setbeamertemplate{background canvas}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[inner sep=0pt] at (current page.center)
+      {\includegraphics[width=\paperwidth,height=\paperheight]{\assetpath/capa_nees.png}};
+    \fill[NeesWine,opacity=.18] (current page.south west) rectangle (current page.north east);
+  \end{tikzpicture}}
+\setbeamertemplate{footline}{}
+\begin{frame}[plain]
+  \vspace{9mm}
+  {\color{white}\fontsize{23}{26}\selectfont\bfseries
+  Inteligência Artificial de Baixo Consumo\par}
+  \vspace{2mm}
+  {\color{white}\fontsize{15}{18}\selectfont
+  para o monitoramento preventivo do bem-estar estudantil em escolas públicas de baixa conectividade\par}
+  \vspace{6mm}
+  {\color{white}\rule{20mm}{1.1pt}}\par
+  \vspace{4mm}
+  {\color{white}\large\bfseries Programa Escola Presente}\par
+  \vfill
+  {\color{white}\small Ivo Calado \quad Rafael Durelli \quad Diego Dias}\par
+  \vspace{1mm}
+  {\color{white!78}\scriptsize UFAL · Especialização em Gestão de Políticas Públicas Educacionais e Transformação Digital · 2026}
+  \vspace{9mm}
+\end{frame}}
+
+% 2 — problema
+\begin{frame}{O problema: sofrimento pouco visível, resposta desigual}
+  \vspace{1mm}
+  \begin{columns}[T,onlytextwidth]
+    \column{.32\textwidth}
+      \metric{38mm}{1 em 7}{NeesWine}{adolescentes de 10 a 19 anos vive com alguma condição de saúde mental.}
+    \column{.32\textwidth}
+      \metric{38mm}{50\% / 40\%}{NeesRed}{sentiu necessidade de ajuda / não procurou ninguém.}
+    \column{.32\textwidth}
+      \metric{38mm}{96\% $\neq$ acesso}{NeesOrange}{internet nominal não significa conexão e dispositivos suficientes.}
+  \end{columns}
+  \vspace{5mm}
+  \begin{beamercolorbox}[wd=\textwidth,sep=3mm,rounded=true]{normal text}
+    \centering\color{NeesWine}\bfseries
+    Dupla exclusão: menor apoio presencial + soluções digitais dependentes da nuvem.
+  \end{beamercolorbox}
+  \sources{Fontes: OMS (2025); UNICEF (2022); TIC Educação (2024).}
+\end{frame}
+
+% 3 — pergunta
+\begin{frame}{Pergunta orientadora e objetivo}
+  \vspace{1mm}
+  \begin{beamercolorbox}[wd=\textwidth,sep=4mm,rounded=true]{normal text}
+    \centering\color{NeesWine}\fontsize{14}{17}\selectfont\bfseries
+    Como apoiar o monitoramento preventivo do bem-estar sem ampliar desigualdades, estigma, carga de trabalho ou riscos à privacidade?
+  \end{beamercolorbox}
+  \vspace{5mm}
+  \begin{columns}[T,onlytextwidth]
+    \column{.31\textwidth}\centering
+      {\color{NeesWine}\bfseries DIAGNOSTICAR}\par\smallskip
+      {\small necessidades, infraestrutura e capacidade real da rede}
+    \column{.31\textwidth}\centering
+      {\color{NeesRed}\bfseries DESENHAR}\par\smallskip
+      {\small protocolo + aplicativo \textit{offline-first} + revisão humana}
+    \column{.31\textwidth}\centering
+      {\color{NeesOrange}\bfseries AVALIAR}\par\smallskip
+      {\small segurança, equidade, confiança, carga e resultados}
+  \end{columns}
+  \vfill
+  \centering\color{NeesDark}
+  Objetivo: estruturar uma política e um protocolo técnico-operacional replicável.
+\end{frame}
+
+% 4 — solução
+\begin{frame}{Programa Escola Presente: três camadas inseparáveis}
+  \begin{columns}[T,onlytextwidth]
+    \column{.315\textwidth}
+      \begin{block}{\color{NeesWine}Protocolo de cuidado}
+        \small
+        \begin{itemize}\setlength\itemsep{2mm}
+          \item escuta não julgadora;
+          \item triagem e revisão humana;
+          \item referência e contrarreferência;
+          \item formação das equipes.
+        \end{itemize}
+      \end{block}
+    \column{.315\textwidth}
+      \begin{block}{\color{NeesRed}Aplicativo offline-first}
+        \small
+        \begin{itemize}\setlength\itemsep{2mm}
+          \item EDAE-A/DASS-21;
+          \item processamento local;
+          \item TinyML leve;
+          \item alternativa em papel.
+        \end{itemize}
+      \end{block}
+    \column{.315\textwidth}
+      \begin{block}{\color{NeesOrange}Governança e avaliação}
+        \small
+        \begin{itemize}\setlength\itemsep{2mm}
+          \item dados mínimos e cifrados;
+          \item painéis agregados;
+          \item auditoria e contestação;
+          \item critérios de suspensão.
+        \end{itemize}
+      \end{block}
+  \end{columns}
+  \vfill
+  \begin{center}
+    {\color{NeesRed}\large\bfseries Não diagnostica · não prescreve · não substitui profissionais}
+  \end{center}
+\end{frame}
+
+% 5 — fluxo
+\begin{frame}{Do convite ao cuidado: fluxo operacional}
+  \centering
+  \begin{tikzpicture}[node distance=3.5mm,>=Latex,
+    flownode/.style={draw=NeesLine,fill=NeesLight,rounded corners=2mm,
+      minimum width=23mm,minimum height=25mm,text width=19mm,align=center,
+      font=\fontsize{7.5}{9}\selectfont,inner sep=2mm},
+    arr/.style={->,thick,NeesGray}]
+    \node[flownode] (a) {{\color{NeesWine}\bfseries 1. ESCUTA}\par\smallskip 21 itens + pedido direto de ajuda};
+    \node[flownode,right=of a] (b) {{\color{NeesRed}\bfseries 2. PROCESSAR}\par\smallskip pontuação e TinyML no aparelho};
+    \node[flownode,right=of b] (c) {{\color{NeesOrange}\bfseries 3. PRIORIZAR}\par\smallskip faixa auxiliar e fila protegida};
+    \node[flownode,right=of c] (d) {{\color{NeesTeal}\bfseries 4. REVISAR}\par\smallskip acolhimento e decisão profissional};
+    \node[flownode,right=of d] (e) {{\color{NeesGreen}\bfseries 5. ENCAMINHAR}\par\smallskip rede e retorno pactuado};
+    \draw[arr] (a)--(b); \draw[arr] (b)--(c); \draw[arr] (c)--(d); \draw[arr] (d)--(e);
+  \end{tikzpicture}
+  \vspace{7mm}
+  \begin{beamercolorbox}[wd=.91\textwidth,sep=3mm,rounded=true]{normal text}
+    \centering\color{NeesWine}\bfseries
+    Situação grave: aciona-se o protocolo humano imediatamente — nunca se espera o algoritmo.
+  \end{beamercolorbox}
+\end{frame}
+
+% 6 — arquitetura
+\begin{frame}{Arquitetura orientada à privacidade}
+  \begin{columns}[c,onlytextwidth]
+    \column{.42\textwidth}
+      \begin{beamercolorbox}[wd=\linewidth,sep=4mm,rounded=true]{normal text}
+        \centering
+        {\color{NeesWine}\bfseries NO DISPOSITIVO}\par\medskip
+        \begin{tabular}{c}
+          respostas individuais \\[1.5mm]
+          $\downarrow$ \\[1mm]
+          pontuação e inferência local \\[1.5mm]
+          $\downarrow$ \\[1mm]
+          fila restrita
+        \end{tabular}\par\medskip
+        {\scriptsize cifrado · acesso por função · retenção mínima}
+      \end{beamercolorbox}
+    \column{.10\textwidth}
+      \centering{\color{NeesRed}\Large$\Longrightarrow$}
+    \column{.42\textwidth}
+      \begin{beamercolorbox}[wd=\linewidth,sep=4mm,rounded=true]{normal text}
+        \centering
+        {\color{NeesOrange}\bfseries PARA A GESTÃO}\par\medskip
+        {\color{NeesDark}\Large\bfseries INDICADORES\par AGREGADOS}\par\medskip
+        {\small sem nomes · sem respostas individuais}\par\smallskip
+        {\small sem uso punitivo, nota, seleção ou publicidade}
+      \end{beamercolorbox}
+  \end{columns}
+  \vfill
+  \centering\color{NeesWine}\bfseries LGPD + proteção integral + supervisão humana
+\end{frame}
+
+% 7 — implementação
+\begin{frame}{Implementação em ondas: testar antes de escalar}
+  \centering
+  \begin{tikzpicture}[x=1mm,y=1mm,>=Latex]
+    \draw[very thick,NeesLine] (3,8)--(120,8);
+    \foreach \x/\cor/\titulo/\tempo/\texto in {
+      5/NeesWine/PREPARAR/1--5/{rede, RIPD e protótipo},
+      33/NeesRed/FORMAR/5--6/{equipes e simulações},
+      61/NeesOrange/TESTAR/6--8/{fluxo sem IA e modo silencioso},
+      89/NeesTeal/PILOTAR/9--12/{uso assistido e expansão gradual},
+      117/NeesGreen/AVALIAR/13--18/{correções e decisão pública}}
+    {
+      \fill[\cor] (\x,8) circle (2.2);
+      \node[anchor=south,text=\cor,font=\bfseries\fontsize{7.5}{9}\selectfont] at (\x,12) {\titulo};
+      \node[anchor=north,text=NeesDark,font=\fontsize{7}{8}\selectfont,align=center,text width=23mm] at (\x,4) {Meses \tempo\\[1mm]\texto};
+    }
+  \end{tikzpicture}
+  \vspace{20mm}
+  \begin{beamercolorbox}[wd=.92\textwidth,sep=3mm,rounded=true]{normal text}
+    \centering\small
+    Piloto proposto em aproximadamente 100 escolas do Norte e Nordeste, condicionado à capacidade de acolhimento, segurança e equidade.
+  \end{beamercolorbox}
+\end{frame}
+
+% 8 — modo silencioso
+\begin{frame}{Três modos para reduzir risco}
+  \begin{columns}[T,onlytextwidth]
+    \column{.30\textwidth}\centering
+      {\color{NeesWine}\fontsize{28}{30}\selectfont\bfseries 1}\par\smallskip
+      {\bfseries Fluxo sem IA}\par\medskip
+      {\small Testa instrumento, linguagem, demanda e resposta humana.}
+    \column{.04\textwidth}\centering\vspace{12mm}{\Large$\rightarrow$}
+    \column{.30\textwidth}\centering
+      {\color{NeesRed}\fontsize{28}{30}\selectfont\bfseries 2}\par\smallskip
+      {\bfseries Modelo silencioso}\par\medskip
+      {\small Compara saídas à avaliação humana, sem mudar a fila.}
+    \column{.04\textwidth}\centering\vspace{12mm}{\Large$\rightarrow$}
+    \column{.30\textwidth}\centering
+      {\color{NeesOrange}\fontsize{28}{30}\selectfont\bfseries 3}\par\smallskip
+      {\bfseries Priorização assistida}\par\medskip
+      {\small Só após desempenho, segurança e equidade aceitáveis.}
+  \end{columns}
+  \vfill
+  \begin{center}
+    {\color{NeesWine}\bfseries Nenhum estudante perde o direito à escuta por ter escore baixo.}
+  \end{center}
+\end{frame}
+
+% 9 — governança
+\begin{frame}{Governança intersetorial}
+  \centering
+  \begin{tikzpicture}[node distance=7mm and 8mm,
+    actor/.style={draw=NeesLine,fill=NeesLight,rounded corners=2mm,
+      minimum width=33mm,minimum height=14mm,text width=29mm,align=center,font=\fontsize{7.5}{9}\selectfont},
+    arr/.style={->,NeesGray,semithick}]
+    \node[draw=NeesWine,fill=NeesWine,text=white,rounded corners=2mm,
+      minimum width=42mm,minimum height=15mm,font=\bfseries] (centro) {ESTUDANTE E CUIDADO};
+    \node[actor,above left=of centro] (sec) {\color{NeesWine}\bfseries Secretarias\\[-1mm]\color{NeesDark}\normalfont diretrizes e recursos};
+    \node[actor,above right=of centro] (esp) {\color{NeesRed}\bfseries Equipe especializada\\[-1mm]\color{NeesDark}\normalfont revisão e encaminhamento};
+    \node[actor,below left=of centro] (esc) {\color{NeesTeal}\bfseries Escola\\[-1mm]\color{NeesDark}\normalfont rotina e proteção local};
+    \node[actor,below right=of centro] (fam) {\color{NeesOrange}\bfseries Famílias e conselhos\\[-1mm]\color{NeesDark}\normalfont participação e controle};
+    \draw[arr] (sec)--(centro); \draw[arr] (esp)--(centro);
+    \draw[arr] (esc)--(centro); \draw[arr] (fam)--(centro);
+  \end{tikzpicture}
+  \vfill
+  {\small Parceiros técnicos e universidades desenvolvem, formam, validam e auditam sob governança pública.}
+\end{frame}
+
+% 10 — riscos
+\begin{frame}{Riscos principais e barreiras de segurança}
+  \fontsize{9}{10.5}\selectfont
+  \renewcommand{\arraystretch}{1.22}
+  \begin{tabular}{>{\bfseries\color{NeesWine}}p{.22\textwidth} p{.70\textwidth}}
+    Vazamento & minimização, criptografia, controle de acesso e plano de incidentes \\
+    Erros do modelo & canal humano, revisão, calibração e contestação \\
+    Viés & auditoria por grupo e suspensão diante de disparidades graves \\
+    Rede insuficiente & mapear capacidade antes de oferecer triagem \\
+    Sobrecarga & dimensionar demanda e reorganizar tarefas \\
+    Uso punitivo & proibição normativa, segregação de acesso e auditoria \\
+  \end{tabular}
+  \vspace{2.5mm}
+  \begin{beamercolorbox}[wd=\textwidth,sep=3mm,rounded=true]{normal text}
+    \centering\color{NeesRed}\bfseries
+    Regra de ouro: nenhuma classificação pode negar acolhimento a quem pede ajuda.
+  \end{beamercolorbox}
+\end{frame}
+
+% 11 — avaliação
+\begin{frame}{Como saberemos se funciona?}
+  \fontsize{8}{9.2}\selectfont
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular}{>{\bfseries\color{NeesWine}}p{.19\textwidth} p{.33\textwidth} p{.39\textwidth}}
+    \toprule
+    Dimensão & Indicador-chave & Pergunta de avaliação \\
+    \midrule
+    Resposta & tempo até a primeira escuta & a rede acolhe em prazo útil? \\
+    Bem-estar & mudança nos escores & há melhora consistente no tempo? \\
+    Equidade & diferenças de acesso e erro & algum grupo é prejudicado? \\
+    Proteção & incidentes e acessos indevidos & os dados permanecem seguros? \\
+    Experiência & confiança, estigma e utilidade & a comunidade legitima o processo? \\
+    Trabalho & tempo adicional e sobrecarga & a rotina é sustentável? \\
+    \bottomrule
+  \end{tabular}
+  \vspace{2.2mm}
+  \centering\color{NeesOrange}\fontsize{8.5}{10}\selectfont\bfseries
+  Meta de 15\% de redução dos escores = hipótese de avaliação, não promessa de impacto.
+\end{frame}
+
+% 12 — contribuição
+\begin{frame}{Contribuição, limites e próximos passos}
+  \begin{columns}[T,onlytextwidth]
+    \column{.31\textwidth}
+      {\color{NeesWine}\bfseries CONTRIBUIÇÃO}\par\medskip
+      {\small Transforma uma recomendação técnica em política implementável: produto, fluxo, atores, indicadores, riscos e cronograma.}
+    \column{.31\textwidth}
+      {\color{NeesRed}\bfseries LIMITES}\par\medskip
+      {\small Sem validação do piloto não há eficácia demonstrada. IA não corrige escassez de profissionais e pode reproduzir vieses.}
+    \column{.31\textwidth}
+      {\color{NeesOrange}\bfseries PRÓXIMOS PASSOS}\par\medskip
+      {\small Pactuar a rede, concluir o RIPD, cocriar o protótipo, testar acessibilidade e operar primeiro em modo silencioso.}
+  \end{columns}
+  \vfill
+  \begin{center}
+    {\color{NeesWine}\Large\bfseries Tecnologia habilitadora, não solução autônoma.}
+  \end{center}
+\end{frame}
+
+% 13 — encerramento
+{\setbeamertemplate{background canvas}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[inner sep=0pt] at (current page.center)
+      {\includegraphics[width=\paperwidth,height=\paperheight]{\assetpath/capa_nees.png}};
+    \fill[NeesWine,opacity=.18] (current page.south west) rectangle (current page.north east);
+  \end{tikzpicture}}
+\setbeamertemplate{footline}{}
+\begin{frame}[plain]
+  \begin{tikzpicture}[remember picture,overlay]
+    \shade[left color=NeesOrange,middle color=NeesRed,right color=NeesWine]
+      (current page.south west) rectangle (current page.north east);
+  \end{tikzpicture}
+  \vspace{10mm}
+  {\color{white}\fontsize{24}{28}\selectfont\bfseries
+    Cuidado humano orientado por evidências,\par
+    mesmo quando a internet falha.}
+  \vspace{7mm}
+  {\color{white}\rule{22mm}{1.1pt}}\par
+  \vspace{5mm}
+  {\color{white!85}\large
+    A IA só gera valor público quando permanece subordinada à proteção integral, à decisão humana e à capacidade real da rede.}
+  \vfill
+  {\color{white}\LARGE\bfseries Perguntas?}\par
+  \vspace{5mm}
+  \colorbox{white}{\hspace{1.5mm}\raisebox{-1.5mm}{\neeslogocolor}\hspace{1.5mm}}
+  \vspace{4mm}
+\end{frame}}
+
+\end{document}

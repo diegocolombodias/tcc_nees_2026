@@ -1,0 +1,19 @@
+# Arquivos auxiliares do LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+
+# Arquivos temporários de editores
+*~
+.~lock.*#
+
+# PDF intermediário; o documento final é texto/tcc.pdf
+/texto/main.pdf

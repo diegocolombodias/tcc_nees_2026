@@ -10,6 +10,7 @@ Projeto Integrado da Especialização em Gestão de Políticas Públicas Educaci
 
 - `texto/`: fontes LaTeX, bibliografia, figura e PDF final do TCC;
 - `slides/`: apresentação em LaTeX/Beamer e PowerPoint, roteiro, assets e PDFs gerados.
+- `fontes/`: documentos de base usados na elaboração do trabalho, mantidos para consulta e rastreabilidade, sem inclusão automática na bibliografia.
 
 ## Compilação
 
